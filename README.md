@@ -38,6 +38,12 @@ Core design ideas (full rationale in the
   (reliability latching onto its own past decisions).
 - **The AI never edits sensor values** — it only adjusts covariance.
 
+![Per-channel reliability during a wheel-slip fault, and the resulting trajectory vs. ground truth](docs/images/episode_slip.png)
+*Left: only `v_encoder` (blue) drops during the shaded slip window — every other
+channel stays near 1.0, exactly the DOF-separated behavior above. Right: the
+Adaptive EKF trajectory (`ai_0`) tracks ground truth (`GT`) more closely than
+the Fixed EKF over the same run.*
+
 ## Packages
 
 | Package | Contents |
@@ -180,6 +186,11 @@ covariance hyperparameters are the values found by `sweep_smoothing`
 (`RECOVERY_TICKS` 10→5, `S_REJECT` 0.10→0.05 — without retraining, this
 improved normal-driving ATE by 65%, fault ATE by 16%, and the false-alarm
 rate by 21%, all at once; see `results/smoothing_sweep.json`).
+
+![ATE RMSE by scenario for Fixed, Rule, RuleZ, AI, and Hybrid](docs/images/ate_by_scenario.png)
+*AI (red) matches or beats every baseline on systematic faults (`enc_drift`,
+`imu_bias`, `imu_dropout`, `slip`, ...); the exceptions — where a plain rule
+does better — are covered in [Honest Limitations](#honest-limitations) below.*
 
 ### Per-scenario ATE RMSE [m] — Fixed → Rule → RuleZ → **AI**
 

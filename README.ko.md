@@ -33,6 +33,12 @@ LiDAR + IMU + Encoder
   Adaptive EKF → AI 피드백 루프(reliability latching)를 차단합니다.
 - **AI는 센서값을 수정하지 않습니다** — 오직 covariance만 조정합니다.
 
+![Wheel Slip 고장 중 채널별 신뢰도와, 그에 따른 궤적 비교](docs/images/episode_slip.png)
+*왼쪽: 음영 처리된 slip 구간에서 `v_encoder`(파란선)만 하락하고 나머지 채널은
+전부 1.0 근처를 유지합니다 — 위에서 설명한 DOF 분리형 동작 그대로입니다.
+오른쪽: Adaptive EKF 궤적(`ai_0`)이 같은 run에서 Fixed EKF보다 실제 경로(`GT`)에
+더 가깝게 유지됩니다.*
+
 ## 패키지
 
 | 패키지 | 내용 |
@@ -155,6 +161,11 @@ asr_evaluation/run_experiments.sh                                           # Ph
 스무딩·covariance 하이퍼파라미터는 `sweep_smoothing`으로 튜닝한 값입니다
 (`RECOVERY_TICKS` 10→5, `S_REJECT` 0.10→0.05 — 재학습 없이 정상 주행 ATE 65%,
 fault ATE 16%, 오탐율 21% 동시 개선; `results/smoothing_sweep.json`).
+
+![시나리오별 Fixed·Rule·RuleZ·AI·Hybrid ATE RMSE 막대그래프](docs/images/ate_by_scenario.png)
+*계통적 고장(`enc_drift`, `imu_bias`, `imu_dropout`, `slip` 등)에서는 AI(빨강)가
+모든 baseline과 같거나 더 낫습니다 — 규칙 기반이 더 나은 예외 케이스는 아래
+[정직한 한계](#정직한-한계) 절에 정리했습니다.*
 
 ### 시나리오별 ATE RMSE [m] — Fixed → Rule → RuleZ → **AI**
 
