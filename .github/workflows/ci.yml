@@ -1,0 +1,31 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        ros_distro: [humble, jazzy]
+    runs-on: ubuntu-latest
+    container: ros:${{ matrix.ros_distro }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: rosdep
+        run: |
+          apt-get update
+          rosdep update || rosdep init && rosdep update
+          rosdep install --from-paths . --ignore-src -y \
+            --skip-keys "turtlebot3_gazebo gazebo_ros robot_localization"
+      - name: build
+        shell: bash
+        run: |
+          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
+          colcon build --event-handlers console_cohesion+
+      - name: unit tests (asr_core + asr_sensing + asr_reliability_estimator)
+        shell: bash
+        run: |
+          source install/setup.bash
+          python3 asr_core/test/test_core.py
+          python3 asr_sensing/test/test_driver.py
+          python3 asr_reliability_estimator/test/test_feature_builder.py

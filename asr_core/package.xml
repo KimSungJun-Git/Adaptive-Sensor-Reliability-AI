@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>asr_core</name>
+  <version>0.1.0</version>
+  <description>ROS-free core algorithms for Adaptive Sensor Reliability AI:
+    EKF, 2D ICP lidar odometry, feature engineering, fault injection,
+    reliability smoothing, covariance scaling and evaluation metrics.</description>
+  <maintainer email="ksj100848@gmail.com">Kim</maintainer>
+  <license>Apache-2.0</license>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-scipy</exec_depend>
+  <test_depend>python3-pytest</test_depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

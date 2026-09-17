@@ -1,0 +1,21 @@
+# Development / reproduction image: Gazebo Classic + TurtleBot3 + training
+# stack (PyTorch CPU, scikit-learn, pandas). Heavy on purpose.
+FROM osrf/ros:humble-desktop-full
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        ros-humble-turtlebot3-gazebo ros-humble-turtlebot3-description \
+        ros-humble-robot-localization \
+        python3-pip python3-numpy python3-scipy python3-pandas \
+        python3-sklearn python3-matplotlib \
+    && rm -rf /var/lib/apt/lists/*
+RUN pip3 install --no-cache-dir onnxruntime onnxscript \
+    && pip3 install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+
+WORKDIR /ws/src/adaptive_sensor_reliability
+COPY . .
+WORKDIR /ws
+RUN . /opt/ros/humble/setup.sh && colcon build
+
+RUN echo 'source /ws/install/setup.bash' >> /root/.bashrc
+ENV TURTLEBOT3_MODEL=waffle_pi
+CMD ["bash"]

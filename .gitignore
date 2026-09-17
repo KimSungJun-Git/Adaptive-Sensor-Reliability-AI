@@ -1,0 +1,14 @@
+build/
+install/
+log/
+data/
+results/
+__pycache__/
+*.pyc
+*.egg-info/
+*.onnx
+!asr_reliability_estimator/model/reliability.onnx
+.pytest_cache/
+.vscode/
+.idea/
+*.swp

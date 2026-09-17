@@ -1,0 +1,32 @@
+ekf_filter_node:
+  ros__parameters:
+    frequency: 30.0
+    two_d_mode: true
+    publish_tf: false          # gazebo already publishes odom->base_footprint
+    world_frame: odom
+    odom_frame: odom
+    base_link_frame: base_footprint
+
+    # ASR covariance-injected topics: identical payloads to the raw sensors,
+    # only the covariance changes with reliability.
+    odom0: /odom/adaptive
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true,  false, false,
+                   false, false, true,
+                   false, false, false]
+    odom0_differential: false
+
+    imu0: /asr/imu/adaptive
+    imu0_config: [false, false, false,
+                  false, false, false,
+                  false, false, false,
+                  false, false, true,
+                  false, false, false]
+
+    twist0: /asr/lidar_twist/adaptive
+    twist0_config: [false, false, false,
+                    false, false, false,
+                    true,  false, false,
+                    false, false, true,
+                    false, false, false]

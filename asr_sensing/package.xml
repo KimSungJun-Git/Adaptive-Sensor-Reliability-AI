@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>asr_sensing</name>
+  <version>0.1.0</version>
+  <description>Sensor preprocessing for ASR: encoder twist, ICP lidar
+    odometry, Gazebo ground truth bridge, scripted driver and the online
+    fault injector.</description>
+  <maintainer email="ksj100848@gmail.com">Kim</maintainer>
+  <license>Apache-2.0</license>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>gazebo_msgs</exec_depend>
+  <exec_depend>asr_core</exec_depend>
+  <exec_depend>asr_msgs</exec_depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

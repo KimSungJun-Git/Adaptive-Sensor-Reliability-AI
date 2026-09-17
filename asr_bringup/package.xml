@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>asr_bringup</name>
+  <version>0.1.0</version>
+  <description>Launch files, demo world and dashboard for Adaptive Sensor
+    Reliability AI (Gazebo Classic + TurtleBot3 waffle_pi).</description>
+  <maintainer email="ksj100848@gmail.com">Kim</maintainer>
+  <license>Apache-2.0</license>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>asr_sensing</exec_depend>
+  <exec_depend>asr_shadow_ekf</exec_depend>
+  <exec_depend>asr_reliability_estimator</exec_depend>
+  <exec_depend>asr_msgs</exec_depend>
+  <exec_depend>python3-matplotlib</exec_depend>
+  <!-- simulation-only extras (not needed on a real robot):
+       turtlebot3_gazebo, gazebo_ros, robot_localization -->
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
