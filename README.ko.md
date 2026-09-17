@@ -9,6 +9,12 @@ Innovation·NIS를 AI가 분석하여 **(센서 × 자유도)별 신뢰도**를 
 EKF measurement covariance에 **bounded inflation**으로 반영하여 Wheel Slip 등
 센서 이상 상황에서도 안정적인 상태 추정을 유지합니다.
 
+![Wheel Slip 고장 중 라이브 데모 대시보드: 왼쪽은 센서×자유도별 신뢰도, 오른쪽은 그에 따른 궤적 비교](docs/images/dashboard_demo.png)
+*실제 라이브 캡처(Gazebo 시뮬레이션). 왼쪽: slip 동안 `encoder s_v`(빨강)가
+반복적으로 0 근처까지 떨어지는 동안 다른 채널은 높게 유지됩니다. 오른쪽: 같은
+루프를 도는 동안 Adaptive EKF(`adaptive`, 파랑)는 실제 경로(`gt`, 검정)를
+계속 따라가지만 Fixed EKF(`fixed`, 빨간 점선)는 완전히 다른 궤적으로 벗어납니다.*
+
 ```text
 LiDAR + IMU + Encoder
         ↓

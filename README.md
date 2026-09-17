@@ -11,6 +11,13 @@ feeds that estimate into the EKF measurement covariance as a **bounded
 inflation**. The result is stable state estimation through sensor faults such
 as wheel slip, without discarding sensors that are still healthy.
 
+![Live demo dashboard during a wheel-slip fault: reliability per sensor×DOF (left) and the resulting trajectory vs. ground truth (right)](docs/images/dashboard_demo.png)
+*Live capture, Gazebo simulation. Left: `encoder s_v` (red) repeatedly drops
+to near 0 during slip while the other channels stay high. Right: the
+Adaptive EKF (`adaptive`, blue) follows ground truth (`gt`, black) through
+the same loop that the Fixed EKF (`fixed`, red dashed) drifts away from
+entirely.*
+
 ```text
 LiDAR + IMU + Encoder
         ↓
