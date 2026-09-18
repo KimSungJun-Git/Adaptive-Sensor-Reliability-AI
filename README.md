@@ -1,5 +1,7 @@
 *[한국어로 보기](README.ko.md)*
 
+### 🔴 [**Live interactive demo →**](https://kimsungjun-git.github.io/Adaptive-Sensor-Reliability-AI/) — replay real evaluation episodes through the deployed model, right in your browser, no install needed.
+
 # Adaptive Sensor Reliability AI
 
 **Real-time per-(sensor × DOF) reliability estimation from multi-sensor consistency, feeding an Adaptive EKF**

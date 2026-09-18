@@ -1,5 +1,7 @@
 *[Read in English](README.md)*
 
+### 🔴 [**라이브 인터랙티브 데모 →**](https://kimsungjun-git.github.io/Adaptive-Sensor-Reliability-AI/) — 설치 없이 브라우저에서 바로, 실제 평가 에피소드를 실제 배포된 모델로 재생해볼 수 있습니다.
+
 # Adaptive Sensor Reliability AI
 
 **다중 센서 일관성 기반 실시간 신뢰도 추정 및 적응형 EKF**
